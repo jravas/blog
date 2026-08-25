@@ -5,6 +5,12 @@ const canonical = new URL('/404/', Astro.site).href;
 ---
 
 <BaseLayout title="Not found" description="Page not found." canonical={canonical}>
-  <h1>404</h1>
-  <p>There is nothing at this address. <a href="/">Back to the homepage</a>.</p>
+  <section class="hero">
+    <p class="eyebrow">HTTP 404</p>
+    <h1>There is <em>nothing</em> at this address.</h1>
+    <p class="sub">
+      The essay may have moved, or the link was wrong from the start. The
+      <a href="/">index</a> has everything that exists.
+    </p>
+  </section>
 </BaseLayout>
