@@ -10,7 +10,7 @@ of the same set of files. `AGENTS.md` at the root. A `.cursor/rules/`
 directory. `CLAUDE.md`. Maybe `.github/instructions/` if they are on
 Copilot. Different names, same job: tell the agent how we work here.
 
-We have about ten repos at a 35 person shop, and all of them have these
+We have about ten repos at a 28 person shop, and all of them have these
 files.
 
 Now go look at how those files got there. For us, for a long time: one
@@ -48,15 +48,34 @@ agent behaves differently in each repo. It reads like model
 nondeterminism. It is not. It is a diff nobody looked at.
 
 **Version mismatch.** This is the one I care about most and see
-discussed least. We migrated a project from Payload 2 to Payload 3, and
-our rules still had Payload 2 patterns in them. A stale rule does not
-make the agent uninformed. It makes it confidently wrong. It generates
-code against an API that no longer exists, in exactly the same tone it
-uses when it is right. A human reading old documentation sees the
-version at the top of the page. The agent has no version to see.
+discussed least. In February we upgraded our largest Next.js project
+from 15 to 16. Two hours after the upgrade commit, the first agent rule
+ever added to that repo went in, describing `middleware.ts`, the file
+Next 16 had just replaced with `proxy.ts`. In May the mismatch stopped
+being theoretical. Turbopack bundled our Redis cache handler into the
+shared edge chunk that middleware pulls in, and the app died at runtime
+with `Cannot find module 'node:crypto'`. We migrated to `proxy.ts`,
+which runs in the Node runtime. Two days before that migration we had
+added a rule to the repo stating that middleware behaves like a client
+bundle and cannot read unprefixed env vars. Three weeks after it, we
+published that rule to npm in a rules pack. Versioned, locked,
+integrity-checked. The repo it came from no longer has middleware. Its
+request handler runs in Node, where unprefixed env works fine. The rule
+is still synced into that repo as I write this. We found it while
+writing this essay.
+
+A stale rule does not make the agent uninformed. It makes it confidently
+wrong, in the same tone it uses when it is right. A human reading old
+documentation sees the version at the top of the page. The agent has no
+version to see. And notice what the lockfile did in that story: exactly
+its job. It faithfully verified the integrity of a stale fact. Locking
+answers which bytes you have. It says nothing about which framework
+version those bytes are true for.
 
 The general shape: a rule is only correct for a range of framework
-versions, and nothing anywhere expresses that range.
+versions, and nothing anywhere expresses that range. Ours included. That
+middleware claim should carry a version range, and as of this writing it
+does not.
 
 **Onboarding.** New developer clones a repo and gets whatever rules
 existed the last time somebody copied them by hand. Which might have
@@ -113,9 +132,9 @@ download somewhere else. This is the boring part, and it is the part
 that actually matters.
 
 **Scope.** A backend engineer does not receive frontend rules. A rule
-written for Payload 2 does not reach a Payload 3 repo. Detect the stack
-from `node_modules`, fall back to the lockfile, fall back to
-`package.json`, route accordingly.
+written for Next 15's edge middleware does not reach a Next 16 repo.
+Detect the stack from `node_modules`, fall back to the lockfile, fall
+back to `package.json`, route accordingly.
 
 **An upgrade path.** An `update` command, a changelog, and the ability
 to go back to the version from before things got worse.
