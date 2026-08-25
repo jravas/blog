@@ -3,7 +3,6 @@ title: "Your AI coding rules are an unsigned dependency"
 description: "Every team using coding agents now ships a set of rule files that steer them. Those files have no version, no checksum, and no owner. Here is what that costs, and what it would take to fix."
 pubDate: 2026-08-25
 tags: ["supply-chain", "agents", "ci-cd"]
-draft: true
 ---
 
 Every team I know running Cursor, Claude Code or Copilot has some version
