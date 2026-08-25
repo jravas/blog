@@ -1,0 +1,49 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description: string;
+  canonical: string;
+  ogType?: 'website' | 'article';
+  pubDate?: Date;
+  updatedDate?: Date;
+}
+
+const isHome = Astro.url.pathname === '/';
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead {...Astro.props} />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        {
+          isHome ? (
+            <h1 class="site-name">
+              <a href="/">{SITE_TITLE}</a>
+            </h1>
+          ) : (
+            <p class="site-name">
+              <a href="/">{SITE_TITLE}</a>
+            </p>
+          )
+        }
+        <a href="/about/">about</a>
+        <a href="/rss.xml">rss</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p class="meta">© {year} Josip Ravas · <a href="/rss.xml">rss</a></p>
+    </footer>
+  </body>
+</html>

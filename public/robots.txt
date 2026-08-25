@@ -1,0 +1,5 @@
+# Keep in sync with SITE_URL in src/consts.ts.
+User-agent: *
+Allow: /
+
+Sitemap: https://jravas.dev/sitemap-index.xml

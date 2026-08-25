@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const canonical = new URL('/404/', Astro.site).href;
+---
+
+<BaseLayout title="Not found" description="Page not found." canonical={canonical}>
+  <h1>404</h1>
+  <p>There is nothing at this address. <a href="/">Back to the homepage</a>.</p>
+</BaseLayout>
