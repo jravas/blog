@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION } from '../consts';
-import { formatDate, getPublishedPosts } from '../lib/posts';
+import { formatDate, getPublishedPosts, readingTime } from '../lib/posts';
 
 const posts = await getPublishedPosts();
 const canonical = new URL('/', Astro.site).href;
@@ -16,6 +16,12 @@ const canonical = new URL('/', Astro.site).href;
       guardrails that make AI-assisted engineering shippable. Everything here is the original;
       anything published elsewhere points back.
     </p>
+    <ul class="badges">
+      <li><span class="k">client js</span><span class="v v-accent">0 kB</span></li>
+      <li><span class="k">analytics</span><span class="v">none</span></li>
+      <li><span class="k">fonts</span><span class="v">self-hosted</span></li>
+      <li><span class="k">canonical</span><span class="v">origin</span></li>
+    </ul>
     <ul class="chips">
       <li><a href="/rss.xml">rss →</a></li>
       <li><a href="https://github.com/jravas">github →</a></li>
@@ -27,15 +33,17 @@ const canonical = new URL('/', Astro.site).href;
     <div class="section-label">
       <h2>Writing</h2>
       <span class="count">{posts.length}</span>
+      <span class="desc">essays, newest first</span>
     </div>
     <ul class="post-list">
       {
         posts.map((post) => (
           <li>
             <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-            <span>
-              <a href={`/writing/${post.id}/`}>{post.data.title}</a>
-              {post.data.tags.length > 0 && <span class="tags">{post.data.tags.join(', ')}</span>}
+            <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+            <span class="tags">
+              {post.data.tags.length > 0 ? `${post.data.tags.join(', ')} · ` : ''}
+              {readingTime(post.body ?? '')} min
             </span>
           </li>
         ))
