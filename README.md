@@ -81,13 +81,10 @@ it.
 
 ## Domain
 
-The domain lives in exactly one place: `SITE_URL` in `src/consts.ts`
-(consumed by `astro.config.mjs`, which feeds the canonical tags, OG tags,
-RSS, and sitemap). `public/robots.txt` carries the sitemap URL and must be
-updated alongside it.
-
-> **TODO:** `SITE_URL` is still the placeholder `https://example.com`. Set
-> the real domain there and in `public/robots.txt` before the first deploy.
+The domain is `https://jravas.dev`. It lives in exactly one place:
+`SITE_URL` in `src/consts.ts` (consumed by `astro.config.mjs`, which feeds
+the canonical tags, OG tags, RSS, and sitemap). `public/robots.txt` carries
+the sitemap URL and must be updated alongside it.
 
 ## Deploy
 
