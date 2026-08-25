@@ -43,9 +43,9 @@
   --rule: rgba(255, 255, 255, 0.08);
   --rule-strong: #575763;
 
-  /* the claim — Brandied Melon, PANTONE 16-1340 */
-  --accent: #ce7b5b;
-  --accent-ink: #e39a77;
+  /* the claim — Amethyst Orchid, PANTONE 17-3628 */
+  --accent: #926aa6;
+  --accent-ink: #c0a0d4;
 
   /* type */
   --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
