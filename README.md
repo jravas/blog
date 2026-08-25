@@ -1,8 +1,9 @@
 # blog
 
-Personal writing site for Josip Ravas. Astro, zero client-side JavaScript, no
-webfonts, one global stylesheet. Deployed on GitHub Pages at
-[jravas.dev](https://jravas.dev).
+Personal writing site for Josip Ravas. Astro, zero client-side JavaScript,
+self-hosted fonts (Newsreader + JetBrains Mono, latin subset), one global
+stylesheet, dark only. Design system is locked in issue #3. Deployed on
+GitHub Pages at [jravas.dev](https://jravas.dev).
 
 ## Run locally
 

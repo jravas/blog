@@ -1,8 +1,8 @@
 ---
-title: "Your AI coding rules are an unsigned dependency"
-description: "Every team using coding agents now ships a set of rule files that steer them. Those files have no version, no checksum, and no owner. Here is what that costs, and what it would take to fix."
+title: 'Your AI coding rules are an unsigned dependency'
+description: 'Every team using coding agents now ships a set of rule files that steer them. Those files have no version, no checksum, and no owner. Here is what that costs, and what it would take to fix.'
 pubDate: 2026-08-25
-tags: ["supply-chain", "agents", "ci-cd"]
+tags: ['supply-chain', 'agents', 'ci-cd']
 ---
 
 Every team I know running Cursor, Claude Code or Copilot has some version
@@ -24,14 +24,14 @@ that process with no version, no checksum and no owner.
 
 ## What they are missing
 
-| | npm package | rules file |
-|---|---|---|
-| Version | semver | git history, if you are lucky |
-| Locking | lockfile | no |
-| Integrity | hash in the lockfile | no |
-| Provenance | registry, signatures | no |
-| Scope | dependencies vs devDependencies | everyone gets everything |
-| Rollback | `npm i pkg@1.2.3` | no |
+|            | npm package                     | rules file                    |
+| ---------- | ------------------------------- | ----------------------------- |
+| Version    | semver                          | git history, if you are lucky |
+| Locking    | lockfile                        | no                            |
+| Integrity  | hash in the lockfile            | no                            |
+| Provenance | registry, signatures            | no                            |
+| Scope      | dependencies vs devDependencies | everyone gets everything      |
+| Rollback   | `npm i pkg@1.2.3`               | no                            |
 
 We spent fifteen years getting those properties for JavaScript
 dependencies. Lockfiles, integrity hashes, provenance, `npm audit`. Then

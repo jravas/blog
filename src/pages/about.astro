@@ -9,19 +9,24 @@ const canonical = new URL('/about/', Astro.site).href;
   description="Who I am, what I work on, and how to reach me."
   canonical={canonical}
 >
-  <h1>About</h1>
-  <p>
-    I'm Josip Ravas, DevOps &amp; Architecture Lead at
-    <a href="https://prototyp.digital">Prototyp</a>. I work on infrastructure, CI/CD, and
-    supply-chain security for agentic development — the pipelines, provenance, and guardrails that
-    make AI-assisted engineering shippable rather than just fast.
-  </p>
-  <p>
-    The essays here are the primary versions. When a piece is cross-posted elsewhere, the cross-post
-    carries a canonical link back to this site.
-  </p>
-  <p>
-    Reach me at <a href="mailto:josip@prototyp.digital">josip@prototyp.digital</a> or find me on
-    <a href="https://github.com/jravas">GitHub</a>.
-  </p>
+  <article>
+    <header class="post-header">
+      <h1>About</h1>
+    </header>
+    <p>
+      I'm Josip Ravas, DevOps &amp; Architecture Lead at
+      <a href="https://prototyp.digital">Prototyp</a>. I work on infrastructure, CI/CD, and
+      supply-chain security for agentic development — the pipelines, provenance, and guardrails that
+      make AI-assisted engineering shippable rather than just fast.
+    </p>
+    <p>
+      The essays here are the primary versions. When a piece is cross-posted elsewhere, the
+      cross-post carries a canonical link back to this site.
+    </p>
+    <ul class="chips">
+      <li><a href="mailto:josip@prototyp.digital">josip@prototyp.digital</a></li>
+      <li><a href="https://github.com/jravas">github →</a></li>
+      <li><a href="/rss.xml">rss →</a></li>
+    </ul>
+  </article>
 </BaseLayout>
