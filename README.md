@@ -1,7 +1,8 @@
 # blog
 
 Personal writing site for Josip Ravas. Astro, zero client-side JavaScript, no
-webfonts, one global stylesheet. Deployed on Cloudflare Pages.
+webfonts, one global stylesheet. Deployed on GitHub Pages at
+[jravas.dev](https://jravas.dev).
 
 ## Run locally
 
@@ -88,9 +89,15 @@ the sitemap URL and must be updated alongside it.
 
 ## Deploy
 
-Cloudflare Pages, connected to this repo:
+GitHub Pages, via `.github/workflows/deploy.yml`:
 
-- Build command: `pnpm build`
-- Output directory: `dist`
-- Deploys on push to `main`
-- Set `NODE_VERSION` to `22` in the Pages environment
+- Every push to `main` builds with pnpm and publishes `dist/` through
+  `actions/deploy-pages`
+- All workflow actions are pinned by commit digest — update them by bumping
+  the SHA and the version comment together
+- `public/CNAME` sets the custom domain (`jravas.dev`); the Pages source in
+  repo settings is "GitHub Actions"
+
+DNS (at the registrar): apex `A` records to GitHub Pages' IPs
+(`185.199.108.153` … `185.199.111.153`) and a `www` CNAME to
+`jravas.github.io`, with "Enforce HTTPS" enabled in the Pages settings.
