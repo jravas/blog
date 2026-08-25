@@ -38,6 +38,7 @@
   --bg-deep: #1e1e20;
   --code-bg: #1a1a1c;
   --ink: #e8e8ef;
+  --ink-bright: #fcfcff; /* headings only — one luminance step above prose */
   --muted: #b2b2bb;
   --faint: #6a6a6e;
   --rule: rgba(255, 255, 255, 0.08);
@@ -153,21 +154,25 @@ main {
   }
 }
 
-/* Headings — serif, never bold. Emphasis is italic + accent. */
+/* Headings — serif, never bold. Emphasis is italic + accent.
+   Hierarchy over prose comes from luminance: headings sit one ink
+   step brighter than body text, which stays at --ink. */
 h1,
 h2,
 h3 {
+  color: var(--ink-bright);
   font-weight: 500;
   line-height: 1.2;
   margin: 2.2em 0 0.5rem;
 }
 
 h2 {
-  font-size: clamp(22px, 3vw, 26px);
+  font-size: clamp(24px, 3.4vw, 30px);
+  letter-spacing: -0.005em;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 21px;
 }
 
 p {
@@ -506,6 +511,13 @@ article em {
   font-style: italic;
 }
 
+/* Strong — the family never sets bold serif. Run-in labels get the
+   heading treatment instead: medium weight, one ink step brighter. */
+article strong {
+  font-weight: 500;
+  color: var(--ink-bright);
+}
+
 article ul,
 article ol {
   padding-left: 1.4rem;
@@ -578,9 +590,16 @@ code {
   font-variant-numeric: tabular-nums;
 }
 
+/* Inline code — filenames, paths, flags. The mono-chip treatment:
+   deep ground, hairline border, radius 0. Reads as an artifact
+   lifted out of the prose, not as prose. */
 :not(pre) > code {
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: var(--ink);
+  background: var(--bg-deep);
+  border: 1px solid var(--rule);
+  padding: 0.1em 0.4em;
+  overflow-wrap: break-word;
 }
 
 /* ------------------------------------------------------------------ */
