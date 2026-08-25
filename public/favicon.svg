@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    text { font: 600 32px Georgia, 'Times New Roman', serif; fill: #17191c; }
+    @media (prefers-color-scheme: dark) { text { fill: #e8e6e1; } }
+  </style>
+  <text x="32" y="43" text-anchor="middle">JR</text>
+</svg>

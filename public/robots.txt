@@ -1,0 +1,5 @@
+# TODO: keep in sync with SITE_URL in src/consts.ts once the domain is decided.
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap-index.xml

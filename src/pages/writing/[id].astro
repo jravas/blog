@@ -1,0 +1,42 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate, getPublishedPosts, readingTime } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// This site is the origin of record. The frontmatter override exists only
+// for the rare piece that was published elsewhere first.
+const canonical = post.data.canonicalURL ?? new URL(`/writing/${post.id}/`, Astro.site).href;
+
+const minutes = readingTime(post.body ?? '');
+const tags = post.data.tags.length > 0 ? ` · ${post.data.tags.join(', ')}` : '';
+const metaRest = `${tags} · ${minutes} min`;
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonical={canonical}
+  ogType="article"
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+>
+  <article>
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <p class="meta">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>{
+          metaRest
+        }
+      </p>
+    </header>
+    <Content />
+  </article>
+</BaseLayout>
