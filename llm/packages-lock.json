@@ -1,0 +1,41 @@
+{
+  "lockfileVersion": 1,
+  "packages": {
+    "bluetemberg-rules-design-craft": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/bluetemberg-rules-design-craft/-/bluetemberg-rules-design-craft-1.0.0.tgz",
+      "integrity": "sha512-2/UZZMhxCfjVsDxT3bE99vWoQhwZOcK1gOgKYt2ztOg9h2OVU6ln/xEPgIMPyT/1giAqrBYiO8S6kKh2oLhAHA==",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    "bluetemberg-rules-docs": {
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/bluetemberg-rules-docs/-/bluetemberg-rules-docs-0.2.0.tgz",
+      "integrity": "sha512-i4SA30HGj2LLMKV4no/piClWo2AVjlj0auSG5zNYgjiJycglHzhotpckO9jPtrum52omhMPaLHsjMnkCYRPOnQ==",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    "bluetemberg-rules-git": {
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/bluetemberg-rules-git/-/bluetemberg-rules-git-0.2.0.tgz",
+      "integrity": "sha512-saQRifzE/a/Q+flhoq2LbFvRPOFF5UsFf0o45d++e+P0rdg87GyrWAwO6zMLEUpTAuzin9T8CajZnFX6BbtjMA==",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    "bluetemberg-rules-accessibility": {
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/bluetemberg-rules-accessibility/-/bluetemberg-rules-accessibility-0.2.0.tgz",
+      "integrity": "sha512-Lua5sI7nv7UVJ7U9ISWjEfDQ7SgF5zwpEWhKphlukl6NbNuMSJ40Em8viYjtkNeMdpmOrKcszZ7cDH66XkJjsQ==",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    "bluetemberg-guardrails-git": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/bluetemberg-guardrails-git/-/bluetemberg-guardrails-git-0.1.0.tgz",
+      "integrity": "sha512-hloCNbWcDRoDosBqxxe3XFPGmYk+8ZLCD8WeLEMIZUTiCUA8DrGuE8bWUTYUDwXo+JcfwQ2kQz5MqjYOxeMZRg==",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    "bluetemberg-skills-design-critique": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/bluetemberg-skills-design-critique/-/bluetemberg-skills-design-critique-1.0.0.tgz",
+      "integrity": "sha512-NBm5tuPuS1UnAgZIPJj5TO89xiycsYQhXEmTEzglkh9p2hniQOlPf+RgA4AtMALpCxPzcRJHrk431Z+79HXtNQ==",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    }
+  }
+}
