@@ -17,5 +17,9 @@ pnpm-debug.log*
 # macOS
 .DS_Store
 
-# local claude config
+# generated AI config — reproducible from llm/packages-lock.json via
+# `bluetemberg install && bluetemberg sync`
 .claude/
+
+# bluetemberg pack download cache
+.bluetemberg/

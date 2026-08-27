@@ -18,6 +18,35 @@ pnpm check      # type-check (astro check)
 pnpm format     # prettier
 ```
 
+## AI config
+
+Rules for coding agents are installed as versioned packs, not pasted in. The
+source of truth is `llm/`; everything under `.claude/` is generated and
+gitignored.
+
+On a fresh clone:
+
+```sh
+npx bluetemberg install   # download packs pinned in llm/packages-lock.json
+npx bluetemberg sync      # generate .claude/
+```
+
+| File                      | Role                                                   |
+| ------------------------- | ------------------------------------------------------ |
+| `llm/packages.json`       | installed packs and their semver ranges                |
+| `llm/packages-lock.json`  | resolved versions, integrity hashes, signature key ids |
+| `llm/rules/`              | rules specific to this site — local, unversioned       |
+| `llm/mcp.json`            | MCP server presets                                     |
+| `bluetemberg.config.json` | platforms, target directories, profile                 |
+
+`npx bluetemberg verify` re-checks integrity and registry signatures for every
+installed pack. `npx bluetemberg sync --check` exits non-zero if `.claude/` has
+drifted from `llm/` — useful in CI.
+
+Never edit files under `.claude/`; they are overwritten on the next sync. Rules
+that should apply to this site go in `llm/rules/`, and rules that should apply
+everywhere belong in a pack.
+
 ## Add a post
 
 Create a Markdown file in `src/content/blog/`. The filename is the slug —
@@ -69,7 +98,7 @@ the homepage, not in `/rss.xml`, not in the sitemap, and the page itself is
 never generated.
 
 To publish: set `draft: false` (or delete the line), commit, push to `main`.
-Cloudflare Pages deploys on push.
+GitHub Pages deploys on push — see [Deploy](#deploy).
 
 ## Cross-posting and canonical URLs
 

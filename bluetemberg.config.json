@@ -1,0 +1,24 @@
+{
+  "platforms": ["claude"],
+  "source": "llm",
+  "profile": "design-engineer",
+  "targets": {
+    "rules": {
+      "claude": {
+        "dir": ".claude/rules",
+        "ext": ".md"
+      }
+    },
+    "agents": {
+      "claude": {
+        "dir": ".claude/agents",
+        "ext": ".md"
+      }
+    },
+    "skills": {
+      "claude": {
+        "dir": ".claude/skills"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "bluetemberg-rules-design-craft": "^1.0.0",
+    "bluetemberg-rules-docs": "^0.2.0",
+    "bluetemberg-rules-git": "^0.2.0",
+    "bluetemberg-rules-accessibility": "^0.2.0",
+    "bluetemberg-guardrails-git": "^0.1.0",
+    "bluetemberg-skills-design-critique": "^1.0.0"
+  }
+}
