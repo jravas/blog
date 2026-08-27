@@ -41,17 +41,26 @@ canonicalURL: https://… # optional — see "Cross-posting" below
 ---
 ```
 
-| Field          | Required | What it does                                                            |
-| -------------- | -------- | ----------------------------------------------------------------------- |
-| `title`        | yes      | Page `<h1>`, `<title>`, OG title                                        |
-| `description`  | yes      | Meta description, OG description, RSS item description                  |
-| `pubDate`      | yes      | Shown in the metadata line, sets sort order, `article:published_time`   |
-| `updatedDate`  | no       | Adds `updated …` to the metadata line, emits `article:modified_time`    |
-| `tags`         | no       | Shown in the post's metadata line (`2026-09-09 · supply-chain · 8 min`) |
-| `draft`        | no       | `true` hides the post from the homepage, RSS, and sitemap in production |
-| `canonicalURL` | no       | Overrides the canonical URL — only for pieces published elsewhere first |
+| Field          | Required | What it does                                                                                                      |
+| -------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `title`        | yes      | Page `<h1>`, `<title>`, OG title                                                                                  |
+| `description`  | yes      | Meta description, OG description, RSS item description                                                            |
+| `pubDate`      | yes      | Shown in the metadata line, sets sort order, `article:published_time`                                             |
+| `updatedDate`  | no       | Adds `updated …` to the metadata line, emits `article:modified_time`, sitemap `<lastmod>`, JSON-LD `dateModified` |
+| `tags`         | no       | Shown in the post's metadata line, emitted as `article:tag` + JSON-LD keywords                                    |
+| `draft`        | no       | `true` hides the post from the homepage, RSS, and sitemap in production                                           |
+| `canonicalURL` | no       | Overrides the canonical URL and drops the post from the sitemap — only for pieces published elsewhere first       |
 
 Reading time is computed from word count at 220 wpm; you don't set it.
+
+Each post also gets a social card generated at build time —
+`/og/<slug>.png`, rendered from the title and description by
+`src/pages/og/[...route].ts` (astro-og-canvas). The static TTFs it draws
+with live in `src/assets/og/`; the woff2 files in `public/fonts/` are for
+browsers only, CanvasKit can't read them. Every page emits `BlogPosting`
+(posts) or `WebSite` + `Person` (homepage) JSON-LD from
+`src/components/BaseHead.astro` — validate with Google's Rich Results Test
+after changing it.
 
 ## Edit history
 
@@ -87,7 +96,8 @@ canonicalURL: https://other-site.example/original-post/
 ```
 
 That makes this site's copy point at the original instead of claiming to be
-it.
+it, and removes the page from the sitemap so search engines aren't invited
+to index a copy whose canonical says "the real one is elsewhere".
 
 ## Domain
 

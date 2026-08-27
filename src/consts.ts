@@ -10,5 +10,9 @@ export const REPO_URL = 'https://github.com/jravas/blog';
 
 export const SITE_TITLE = 'Josip Ravas';
 
+// Author identity for structured data (JSON-LD) and OG author tags.
+export const AUTHOR_GITHUB = 'https://github.com/jravas';
+export const AUTHOR_JOB_TITLE = 'DevOps & Architecture Lead';
+
 export const SITE_DESCRIPTION =
   'Essays on infrastructure, CI/CD, and supply-chain security for agentic development.';

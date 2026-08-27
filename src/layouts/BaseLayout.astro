@@ -9,6 +9,9 @@ interface Props {
   ogType?: 'website' | 'article';
   pubDate?: Date;
   updatedDate?: Date;
+  tags?: string[];
+  ogImagePath?: string;
+  ogImageAlt?: string;
 }
 
 const year = new Date().getFullYear();
