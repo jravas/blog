@@ -4,6 +4,10 @@
 // (public/robots.txt is the one unavoidable exception — keep it in sync).
 export const SITE_URL = 'https://jravas.dev';
 
+// The site's own source, public on purpose: every essay links to its
+// full commit history here. Walking the talk of the provenance essay.
+export const REPO_URL = 'https://github.com/jravas/blog';
+
 export const SITE_TITLE = 'Josip Ravas';
 
 export const SITE_DESCRIPTION =

@@ -34,7 +34,7 @@ Frontmatter:
 title: 'Post title'
 description: 'One or two sentences. Used for <meta name="description"> and Open Graph.'
 pubDate: 2026-09-09
-updatedDate: 2026-09-12 # optional — emits article:modified_time when set
+updatedDate: 2026-09-12 # optional — shown in the metadata line, emits article:modified_time
 tags: [supply-chain, agents] # optional, default []
 draft: true # optional, default false — see below
 canonicalURL: https://… # optional — see "Cross-posting" below
@@ -46,12 +46,20 @@ canonicalURL: https://… # optional — see "Cross-posting" below
 | `title`        | yes      | Page `<h1>`, `<title>`, OG title                                        |
 | `description`  | yes      | Meta description, OG description, RSS item description                  |
 | `pubDate`      | yes      | Shown in the metadata line, sets sort order, `article:published_time`   |
-| `updatedDate`  | no       | Emits `article:modified_time`                                           |
+| `updatedDate`  | no       | Adds `updated …` to the metadata line, emits `article:modified_time`    |
 | `tags`         | no       | Shown in the post's metadata line (`2026-09-09 · supply-chain · 8 min`) |
 | `draft`        | no       | `true` hides the post from the homepage, RSS, and sitemap in production |
 | `canonicalURL` | no       | Overrides the canonical URL — only for pieces published elsewhere first |
 
 Reading time is computed from word count at 220 wpm; you don't set it.
+
+## Edit history
+
+Every post's footer links to its per-file commit log on GitHub — the full,
+unedited record of every change, typo fixes included. That link needs no
+maintenance; it always reflects `main`. Set `updatedDate` by hand only when
+an edit changes the substance of the piece — it is the curated "this post
+was revised" signal, not a mirror of the git log.
 
 ## Publish a draft
 
