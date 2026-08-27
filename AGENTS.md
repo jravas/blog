@@ -33,11 +33,26 @@ edit them expecting the change to survive.
 `.claude/` out of date. Always format first, then sync — `npx bluetemberg sync --check`
 verifies the two agree.
 
-**The four rules in `llm/rules/` are local, unversioned files** — no semver, no
-lockfile entry, no integrity hash. They are exactly the unsigned dependency
-described in `src/content/blog/ai-rules-unsigned-dependency.md`. That is a known,
-deliberate trade-off pending a decision on private pack distribution; see the PR
-that introduced this directory.
+### Local rules
+
+Eight rules in `llm/rules/` are specific to this site. Four cover the build, four
+cover the writing:
+
+| Rule                   | Covers                                                     |
+| ---------------------- | ---------------------------------------------------------- |
+| `zero-client-js`       | the build ships no JavaScript — an invariant               |
+| `canonical-first`      | one home for the domain; drafts never reach production     |
+| `locked-visual-system` | shipped tokens, permitted moves, banned moves              |
+| `essay-voice`          | register, measured from the published prose                |
+| `claim-evidence`       | every claim carries its basis                              |
+| `honest-gap`           | stating what is not known, and conceding against yourself  |
+| `post-corrections`     | amending a published essay in the open                     |
+| `reference-integrity`  | links resolve, quotes are exact, nothing cited from memory |
+
+**These are local, unversioned files** — no semver, no lockfile entry, no
+integrity hash. They are exactly the unsigned dependency described in
+`src/content/blog/ai-rules-unsigned-dependency.md`. That is a known, deliberate
+trade-off; they are written in pack-ready structure so promotion is a file move.
 
 ## Boundaries
 
@@ -48,6 +63,9 @@ that introduced this directory.
 - Keep `SITE_URL` in `src/consts.ts` the only home for the domain
 - Filter drafts on `import.meta.env.PROD` in every new blog-collection query
 - Update the README in the same commit as any change to setup, scripts, or deploy
+- Before publishing a post, run the register check and the link check in
+  `essay-voice` and `reference-integrity`
+- Set `updatedDate` only when an edit changed the argument, never for typos
 
 ### Ask first
 
@@ -58,6 +76,9 @@ that introduced this directory.
 ### Never
 
 - Ship client-side JavaScript, a `client:*` directive, or a `<script>` tag
+- Rewrite git history on a file under `src/content/blog/` — every post links to
+  its own commit log
+- Cite a source without opening it, or invent a figure and attribute it to research
 - Edit generated files under `.claude/`
 - Push directly to `main`, or commit onto another open PR's branch
 - Commit `.env` or secrets
