@@ -32,8 +32,8 @@ const canonical = new URL('/', Astro.site).href;
   <section>
     <div class="section-label">
       <h2>Writing</h2>
-      <span class="count">{posts.length}</span>
-      <span class="desc">essays, newest first</span>
+      <span class="count">{posts.length}</span>{' '}
+      <span class="desc">{posts.length === 1 ? 'essay' : 'essays'}, newest first</span>
     </div>
     <ul class="post-list">
       {
