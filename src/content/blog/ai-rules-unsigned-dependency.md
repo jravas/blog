@@ -50,27 +50,31 @@ nondeterminism. It is not. It is a diff nobody looked at.
 **Version mismatch.** This is the one I care about most and see
 discussed least. In February we upgraded our largest Next.js project
 from 15 to 16. Two hours after the upgrade commit, the first agent rule
-ever added to that repo went in, describing `middleware.ts`, the file
-Next 16 had just replaced with `proxy.ts`. In May the mismatch stopped
-being theoretical. Turbopack bundled our Redis cache handler into the
-shared edge chunk that middleware pulls in, and the app died at runtime
-with `Cannot find module 'node:crypto'`. We migrated to `proxy.ts`,
-which runs in the Node runtime. Two days before that migration we had
-added a rule to the repo stating that middleware behaves like a client
-bundle and cannot read unprefixed env vars. Three weeks after it, we
-published that rule to npm in a rules pack. Versioned, locked,
-integrity-checked. The repo it came from no longer has middleware. Its
-request handler runs in Node, where unprefixed env works fine. The rule
-is still synced into that repo as I write this. We found it while
-writing this essay.
+ever added to that repo went in. It described `middleware.ts`, the file
+Next 16 had just replaced with `proxy.ts`.
+
+In May the mismatch stopped being theoretical. Turbopack bundled our
+Redis cache handler into the shared edge chunk that middleware pulls in,
+and the app died at runtime with `Cannot find module 'node:crypto'`. We
+migrated to `proxy.ts`, which runs in the Node runtime. Two days before
+that migration we had added a second rule, stating that middleware
+behaves like a client bundle and cannot read unprefixed env vars.
+
+Three weeks after the migration we published that rule to npm in a rules
+pack. Versioned, locked, integrity-checked. By then the repo it came
+from no longer had middleware. Its request handler runs in Node, where
+unprefixed env works fine. The rule is still synced into that repo as I
+write this. We found it while writing this essay.
+
+Notice what the lockfile did there: exactly its job. It faithfully
+verified the integrity of a stale fact. Locking answers which bytes you
+have. It says nothing about which framework version those bytes are
+true for.
 
 A stale rule does not make the agent uninformed. It makes it confidently
 wrong, in the same tone it uses when it is right. A human reading old
 documentation sees the version at the top of the page. The agent has no
-version to see. And notice what the lockfile did in that story: exactly
-its job. It faithfully verified the integrity of a stale fact. Locking
-answers which bytes you have. It says nothing about which framework
-version those bytes are true for.
+version to see.
 
 The general shape: a rule is only correct for a range of framework
 versions, and nothing anywhere expresses that range. Ours included. That
