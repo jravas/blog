@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { REPO_URL } from '../../consts';
 import { formatDate, getPublishedPosts, readingTime } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -16,9 +17,15 @@ const { Content } = await render(post);
 const canonical = post.data.canonicalURL ?? new URL(`/writing/${post.id}/`, Astro.site).href;
 const canonicalDisplay = canonical.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
+// Every edit to a post is public. GitHub holds the per-file commit log;
+// `updatedDate` in the frontmatter is the curated signal for edits that
+// changed the argument, not just the spelling.
+const historyURL = `${REPO_URL}/commits/main/${post.filePath ?? `src/content/blog/${post.id}.md`}`;
+
 const minutes = readingTime(post.body ?? '');
 const tags = post.data.tags.length > 0 ? ` · ${post.data.tags.join(', ')}` : '';
-const metaRest = `${tags} · ${minutes} min`;
+const updated = post.data.updatedDate ? ` · updated ${formatDate(post.data.updatedDate)}` : '';
+const metaRest = `${tags} · ${minutes} min${updated}`;
 ---
 
 <BaseLayout
@@ -41,7 +48,9 @@ const metaRest = `${tags} · ${minutes} min`;
     <Content />
     <footer class="post-end">
       <a href="/">← all essays</a>
-      <span class="canon">canonical · {canonicalDisplay}</span>
+      <span class="canon"
+        >canonical · {canonicalDisplay} · <a href={historyURL}>edit history ↗</a></span
+      >
     </footer>
   </article>
 </BaseLayout>
