@@ -35,6 +35,9 @@ const metaRest = `${tags} · ${minutes} min${updated}`;
   ogType="article"
   pubDate={post.data.pubDate}
   updatedDate={post.data.updatedDate}
+  tags={post.data.tags}
+  ogImagePath={`/og/${post.id}.png`}
+  ogImageAlt={post.data.title}
 >
   <article>
     <header class="post-header">
