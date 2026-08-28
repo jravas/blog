@@ -5,7 +5,7 @@ pubDate: 2026-08-28
 tags: ['agents', 'ci-cd', 'measurement']
 ---
 
-In nine weeks I ran 77 sessions with a coding agent. It produced 18,267,471 output tokens. That is about 13.7 million words. The best available estimate for silent adult reading of English prose is 238 words per minute, from a meta-analysis of 190 studies with 18,573 participants (Brysbaert, 2019). Divide, and reading all of it takes 959 hours. I worked on 41 of those days.
+In nine weeks I ran 77 sessions with a coding agent. It produced 18,267,471 output tokens. That is about 13.7 million words. The best available estimate for silent adult reading of English prose is 238 words per minute, from a meta-analysis of 190 studies with 18,573 participants ([Brysbaert, 2019](https://gwern.net/doc/psychology/linguistics/2019-brysbaert.pdf)). Divide, and reading all of it takes 959 hours. I worked on 41 of those days.
 
 That is 23.4 hours of reading per active day. A day has 24.
 
@@ -17,7 +17,7 @@ I want to be precise about what this does and does not prove. It does not prove 
 
 The obvious answer is that nobody needs to read the model's prose, only the code that survives into a pull request. So I measured that.
 
-Across three months I opened 293 pull requests and merged 234, adding 64,283 lines. The largest code review study I know of, ten months at Cisco with SmartBear, 2,500 reviews and 3.2 million lines, recommends reviewing 200 to 400 lines at a sitting and finds that defect discovery measurably drops past 400. At their recommended rate of 300 lines per hour, my merged code alone needed 3.3 hours of review every working day, before I wrote anything, attended anything, or answered a page.
+Across three months I opened 293 pull requests and merged 234, adding 64,283 lines. The largest code review study I know of, [ten months at Cisco with SmartBear](https://static0.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf), 2,500 reviews and 3.2 million lines, recommends reviewing 200 to 400 lines at a sitting and finds that defect discovery measurably drops past 400. At their recommended rate of 300 lines per hour, my merged code alone needed 3.3 hours of review every working day, before I wrote anything, attended anything, or answered a page.
 
 The distribution is the interesting part. 77.4% of my merged pull requests are under the 400 line ceiling and are therefore reviewable. They contain 22.5% of the code. The other 22.6% of pull requests carry 49,800 lines, which is 77.5% of everything I merged. I could have reviewed three quarters of my pull requests perfectly and still never have looked at three quarters of the code. That is not a discipline problem. It is a distribution.
 
@@ -31,7 +31,7 @@ This part is one engineer's data. Mine. It is illustration, not evidence.
 
 If nobody reads the output, the question is where the intent went, because the work is clearly specified somewhere. It is not in the prompts.
 
-The median prompt I typed to the model in that window is 48 characters. Eight words. 71.9% of my prompts are 15 words or shorter. Prompt engineering was never the skill, and my own transcripts are the evidence against it: on a median eight word instruction, only 1.8% of my prompts were corrections of the previous turn. That is one person's transcripts, and I hold it loosely for a reason. METR's randomised trial (arXiv:2507.09089, 16 experienced developers, 246 tasks) found developers using AI believed they were 20% faster while the clock said they were 19% slower. Nothing about my data makes me immune to being wrong about my own work by 39 points.
+The median prompt I typed to the model in that window is 48 characters. Eight words. 71.9% of my prompts are 15 words or shorter. Prompt engineering was never the skill, and my own transcripts are the evidence against it: on a median eight word instruction, only 1.8% of my prompts were corrections of the previous turn. That is one person's transcripts, and I hold it loosely for a reason. METR's randomised trial ([arXiv:2507.09089](https://arxiv.org/abs/2507.09089), 16 experienced developers, 246 tasks) found developers using AI believed they were 20% faster while the clock said they were 19% slower. Nothing about my data makes me immune to being wrong about my own work by 39 points.
 
 The median GitHub issue body in the same window is 2,718 characters. About 453 words. That is 57 times the prompt. Across all 136 issues, not a sample, 66.2% exceed 2,000 characters and the shortest in the entire population is 507. The longest is 29,566 characters, a cache audit with ninety confirmed findings written before a single line was fixed.
 
@@ -91,7 +91,7 @@ One more thing supports the same claim, and then the research does.
 
 That system has a large end to end suite, hand written by a QA colleague, one spec per market per form. It runs against a deployed environment and files real records into a real CRM. It could not gate a pull request even if someone wired it up, because its design needs a deployed target and produces real side effects, so its only available trigger was a manual one. A manual trigger nobody presses is indistinguishable from no check at all, and that is not a failure of anyone's diligence. It is a control whose design excludes it from the only position where it fires on its own.
 
-Three unrelated sources name the same gap. Two are maturity frameworks, one of which puts its next gate not at test existence but at the reliability of test execution, while the other reads a setup like mine as high autonomy with weak controls. Both are preprints and neither is settled science. The third is DORA's 2025 report, which at 90% AI adoption still finds throughput positively correlated and stability negatively correlated, and names strong automated testing and fast feedback loops as the mitigation. I am the case study in that report's warning section.
+Three unrelated sources name the same gap. Two are maturity frameworks. [One](https://arxiv.org/abs/2604.09388) puts its next gate not at test existence but at the reliability of test execution, and the other reads a setup like mine as high autonomy with weak controls. The first is a single-author preprint with a sample size of one, the second is a vendor framework, and neither is settled science. The third is [DORA's 2025 report](https://services.google.com/fh/files/misc/2025_state_of_ai_assisted_software_development.pdf), which at 90% AI adoption still finds throughput positively correlated and stability negatively correlated, and names strong automated testing and fast feedback loops as the mitigation. I am the case study in that report's warning section.
 
 ## What the second half has to do
 
@@ -103,7 +103,7 @@ It has to be able to fail, and someone has to have watched it fail. A gate nobod
 
 It has to fail closed on the number it protects, at a threshold set below what you already have. A coverage ratchet configured just under today's figure, rounded down, costs one line. An aspirational threshold fails on day one and gets deleted on day two.
 
-It has to check the artifact the specification actually lives in. If the intent is 453 words in an issue with acceptance criteria, the second half is not a human reading a 3,000 line diff to confirm it matches. That reading is close to pure extraneous load in Sweller's sense, and the decision it verifies was already made when the issue was written. The criteria in the issue are the thing to execute.
+It has to check the artifact the specification actually lives in. If the intent is 453 words in an issue with acceptance criteria, the second half is not a human reading a 3,000 line diff to confirm it matches. That reading is close to pure extraneous load in [Sweller's sense](https://link.springer.com/article/10.1007/s11251-009-9110-0), and the decision it verifies was already made when the issue was written. The criteria in the issue are the thing to execute.
 
 It has to survive its author going on holiday. A mechanism that is really one person's habit is an instruction wearing a control's costume.
 
@@ -112,3 +112,16 @@ And it has to feed back. Log what the machine produced that you rejected, and wh
 I have one of those six. The gates run, on two repositories, since 31 July. No coverage ratchet is configured. The acceptance criteria in the issues are executed by nobody. The docs parity rule is written down in four repositories out of six and machine-enforced in none of them. And my rejection log has a schema, a logger, and zero records in it.
 
 The thing that took nine weeks was finding out. The thing that closed it was a workflow file. Whatever the second half costs, it is not the mechanism.
+
+
+## Sources
+
+External research, in the order it appears. My own figures are from my own repositories and transcripts and are not sourced here.
+
+- Brysbaert, M. (2019). *How many words do we read per minute? A review and meta-analysis of reading rate.* Journal of Memory and Language. 190 studies, n=18,573. [PDF](https://gwern.net/doc/psychology/linguistics/2019-brysbaert.pdf) · [Record](https://biblio.ugent.be/publication/8647789)
+- SmartBear / Cisco Systems. *Code review case study.* Ten months, 2,500 reviews, 3.2 million lines. [Case study PDF](https://static0.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf) · [Best practices](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)
+- METR (2025). *Measuring the impact of early-2025 AI on experienced open-source developer productivity.* Randomised controlled trial, n=16, 246 tasks. [Blog](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) · [arXiv:2507.09089](https://arxiv.org/abs/2507.09089)
+- Sweller, J. (2010). *Cognitive load theory, educational research, and instructional design: some food for thought.* Instructional Science. [Springer](https://link.springer.com/article/10.1007/s11251-009-9110-0)
+- DORA (2025). *State of AI-Assisted Software Development.* [Report PDF](https://services.google.com/fh/files/misc/2025_state_of_ai_assisted_software_development.pdf) · [Announcement](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report)
+- Anderson (2026). *Agentic Coding Maturity Model.* Single-author preprint, sample size of one, not peer reviewed. [arXiv:2604.09388](https://arxiv.org/abs/2604.09388)
+- The second maturity framework is AI-MM SET (Gigacore), a vendor framework rather than research.
