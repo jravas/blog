@@ -23,7 +23,7 @@ The distribution is the interesting part. 77.4% of my merged pull requests are u
 
 The rest of that picture is what you would expect. 82.5% of my merged pull requests received zero review comments. 46% merged within 30 minutes, median time to merge 0.6 hours. Each of those is a defensible trade on its own. I made all three on the same pull requests for a quarter.
 
-Here is the symmetric number, before anyone reads that as an accusation of colleagues. In the same window I reviewed 58 of 1,786 pull requests opened by other people, which is 3.2%, and 60% of those I approved with no body and no inline comment. The reviews I do write are real, 59,629 characters in total, with changes requested on 12. The honest sentence is not that nobody reviewed my code. It is that almost nobody reviews anybody's code here, and I am part of that.
+Here is the symmetric number, before anyone reads that as a complaint about colleagues. In the same window I reviewed 58 of the 1,786 pull requests other people opened, which is 3.2%, and 60% of those I approved with no body and no inline comment. The reviews I do write are real, 59,629 characters with changes requested on 12. So the point is not that my code went unreviewed. It is that I was doing the same thing, at the same time, on the same volume, and I only noticed when I counted.
 
 This part is one engineer's data. Mine. It is illustration, not evidence.
 
