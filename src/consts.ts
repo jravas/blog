@@ -15,4 +15,4 @@ export const AUTHOR_GITHUB = 'https://github.com/jravas';
 export const AUTHOR_JOB_TITLE = 'DevOps & Architecture Lead';
 
 export const SITE_DESCRIPTION =
-  'Essays on infrastructure, CI/CD, and supply-chain security for agentic development.';
+  'Essays on infrastructure and reliability, and on whether the controls a system relies on actually fire.';
